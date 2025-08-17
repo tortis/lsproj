@@ -4,7 +4,7 @@ use std::str::FromStr;
 
 use anyhow::Result;
 
-const ROOT_SIGNATURES: [&str; 2] = [".git", "package.json"];
+const ROOT_SIGNATURES: [&str; 3] = [".git", "package.json", ".lsproj"];
 
 fn main() -> Result<()> {
     let args: Vec<_> = std::env::args().collect();
