@@ -29,7 +29,13 @@ fn scan(root: String) -> Result<Vec<String>> {
             let rel_path = p.to_str().unwrap().strip_prefix(&root).unwrap();
             projects.push(rel_path.into());
         } else {
-            let dir = fs::read_dir(p)?;
+            let dir = match fs::read_dir(&p) {
+                Ok(d) => d,
+                Err(e) => {
+                    eprintln!("Skipping {}: {}", p.display(), e);
+                    continue;
+                }
+            };
             for entry in dir.filter_map(|e| e.ok()) {
                 let is_dir = entry.file_type().map_or(false, |ft| ft.is_dir());
                 if is_dir {
