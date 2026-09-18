@@ -20,6 +20,20 @@ It's intended to be used for project switching/selection tools. For example, the
 output may be passed to fzf, then onto a tmux script to open a session for the
 project.
 
+## Options
+
+`-d N` / `--max-depth N` limits how deep the scan goes. `1` only looks directly
+inside `ROOT`, `2` also scans its immediate subdirectories, and so on. Without
+it, the scan is unbounded.
+
+```bash
+$ lsproj ~/workspace --max-depth 1
+/fadedjim.com
+/leftwm-config
+/rofi
+...
+```
+
 ## Install
 
 ```bash
